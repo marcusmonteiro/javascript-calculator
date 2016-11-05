@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import math from 'mathjs'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { FlatButton, GridList, GridTile, Subheader, Divider } from 'material-ui'
+import { FlatButton, GridList, GridTile, Subheader } from 'material-ui'
 
 const styles = {
   gridList: {
@@ -70,7 +70,6 @@ export default class Calculator extends Component {
           <GridList cols={4} cellHeight={55} style={styles.gridList}>
             <Subheader>{this.state.expression}</Subheader>
             <Subheader>{this.state.errorMessage}</Subheader>
-            <Divider />
             <GridTile>
               <FlatButton id='ButtonAC' onClick={this.handleButtonClick.bind(this, 'AC')}>AC</FlatButton>
             </GridTile>
