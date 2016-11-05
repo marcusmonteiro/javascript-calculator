@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
 import math from 'mathjs'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { FlatButton, GridList, GridTile, Subheader, Divider } from 'material-ui'
+
+const styles = {
+  gridList: {
+    width: 350
+  }
+}
 
 export default class Calculator extends Component {
   constructor (props) {
@@ -9,7 +17,6 @@ export default class Calculator extends Component {
       errorMessage: null
     }
     this.evaluate = this.evaluate.bind(this)
-    this.handleButtonClick = this.handleButtonClick.bind(this)
   }
 
   evaluate () {
@@ -34,7 +41,7 @@ export default class Calculator extends Component {
 
   handleButtonClick (e) {
     this.eraseErrorMessage()
-    const value = e.target.value
+    const value = e
     if (value === 'AC') {
       this.setState({
         expression: ''
@@ -52,40 +59,73 @@ export default class Calculator extends Component {
       return
     }
     this.setState({
-      expression: this.state.expression.concat(e.target.value)
+      expression: this.state.expression.concat(value)
     })
   }
 
   render () {
     return (
-      <div>
+      <MuiThemeProvider>
         <div>
-          {this.state.expression}
+          <GridList cols={4} cellHeight={55} style={styles.gridList}>
+            <Subheader>{this.state.expression}</Subheader>
+            <Subheader>{this.state.errorMessage}</Subheader>
+            <Divider />
+            <GridTile>
+              <FlatButton id='ButtonAC' onClick={this.handleButtonClick.bind(this, 'AC')}>AC</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonCE' onClick={this.handleButtonClick.bind(this, 'CE')}>CE</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonDivide' onClick={this.handleButtonClick.bind(this, '/')}>/</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonMultiply' onClick={this.handleButtonClick.bind(this, '*')}>*</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button7' onClick={this.handleButtonClick.bind(this, '7')}>7</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button8' onClick={this.handleButtonClick.bind(this, '8')}>8</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button9' onClick={this.handleButtonClick.bind(this, '9')}>9</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonMinus' onClick={this.handleButtonClick.bind(this, '-')}>-</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button4' onClick={this.handleButtonClick.bind(this, '4')}>4</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button5' onClick={this.handleButtonClick.bind(this, '5')}>5</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button6' onClick={this.handleButtonClick.bind(this, '6')}>6</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonPlus' onClick={this.handleButtonClick.bind(this, '+')}>+</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button1' onClick={this.handleButtonClick.bind(this, '1')}>1</FlatButton>
+            </GridTile>
+            <FlatButton id='Button2' onClick={this.handleButtonClick.bind(this, '2')}>2</FlatButton>
+            <GridTile>
+              <FlatButton id='Button3' onClick={this.handleButtonClick.bind(this, '3')}>3</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='ButtonEqual' onClick={this.handleButtonClick.bind(this, '=')}>=</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button0' onClick={this.handleButtonClick.bind(this, '0')}>0</FlatButton>
+            </GridTile>
+            <GridTile>
+              <FlatButton id='Button.' onClick={this.handleButtonClick.bind(this, '.')}>.</FlatButton>
+            </GridTile>
+          </GridList>
         </div>
-        <div>
-          {this.state.errorMessage}
-        </div>
-        <div>
-          <button id='ButtonAC' value='AC' onClick={this.handleButtonClick}>AC</button>
-          <button id='ButtonCE' value='CE' onClick={this.handleButtonClick}>CE</button>
-          <button id='ButtonDivide' value='/' onClick={this.handleButtonClick}>/</button>
-          <button id='ButtonMultiply' value='*' onClick={this.handleButtonClick}>*</button>
-          <button id='Button7' value='7' onClick={this.handleButtonClick}>7</button>
-          <button id='Button8' value='8' onClick={this.handleButtonClick}>8</button>
-          <button id='Button9' value='9' onClick={this.handleButtonClick}>9</button>
-          <button id='ButtonMinus' value='-' onClick={this.handleButtonClick}>-</button>
-          <button id='Button4' value='4' onClick={this.handleButtonClick}>4</button>
-          <button id='Button5' value='5' onClick={this.handleButtonClick}>5</button>
-          <button id='Button6' value='6' onClick={this.handleButtonClick}>6</button>
-          <button id='ButtonPlus' value='+' onClick={this.handleButtonClick}>+</button>
-          <button id='Button1' value='1' onClick={this.handleButtonClick}>1</button>
-          <button id='Button2' value='2' onClick={this.handleButtonClick}>2</button>
-          <button id='Button3' value='3' onClick={this.handleButtonClick}>3</button>
-          <button id='ButtonEqual' value='=' onClick={this.handleButtonClick}>=</button>
-          <button id='Button0' value='0' onClick={this.handleButtonClick}>0</button>
-          <button id='Button.' value='.' onClick={this.handleButtonClick}>.</button>
-        </div>
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

@@ -36,9 +36,12 @@
     "stylelint-config-standard": "^14.0.0"
   },
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "material-ui": "^0.16.1",
     "mathjs": "^3.7.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
